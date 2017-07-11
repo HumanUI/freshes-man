@@ -51,7 +51,7 @@ class Server {
     const config = this.config
     return {
       entry: {
-        app: this.resolve('src/main.js')
+        app: path.join(config.appPath, 'main.js')
       },
       output: {
         path: config.assetsRoot,
@@ -59,10 +59,7 @@ class Server {
         publicPath: config.assetsPublicPath
       },
       resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        alias: {
-          '@': this.resolve('src')
-        }
+        extensions: ['.js', '.vue', '.json']
       },
       module: {
         rules: [
@@ -70,7 +67,7 @@ class Server {
             test: /\.(js|vue)$/,
             loader: 'eslint-loader',
             enforce: 'pre',
-            include: [this.resolve('src'), this.resolve('test')],
+            include: [path.join(config.appPath), path.join(config.testPath)],
             options: {
               formatter: require('eslint-friendly-formatter')
             }
@@ -83,7 +80,7 @@ class Server {
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            include: [this.resolve('src'), this.resolve('test')]
+            include: [path.join(config.appPath), path.join(config.testPath)]
           },
           {
             test: /vue-human(-\w+)?[\/\\].*\.js$/,
