@@ -28,5 +28,8 @@ module.exports = {
   port: 8080,
   cssSourceMap: true,
   cssMinimize: false,
-  cssExtract: false
+  cssExtract: false,
+  productionGzip: false,
+  productionGzipExtensions: ['js', 'css'],
+  bundleAnalyzerReport: process.env.npm_config_report
 }
