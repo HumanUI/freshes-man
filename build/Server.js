@@ -121,7 +121,6 @@ class Server {
   }
 
   getVueLoader () {
-    var utils = require('./utils')
     var config = this.config
 
     return {
@@ -232,7 +231,6 @@ class Server {
 
   run () {
     var config = this.config
-    var opn = require('opn')
     var path = require('path')
     var express = require('express')
     var webpack = require('webpack')
@@ -241,8 +239,6 @@ class Server {
 
     // default port where dev server listens for incoming traffic
     var port = process.env.PORT || config.port
-    // automatically open browser, if not set will be false
-    var autoOpenBrowser = false
     // Define HTTP proxies to your custom API backend
     // https://github.com/chimurai/http-proxy-middleware
     var proxyTable = config.proxyTable
