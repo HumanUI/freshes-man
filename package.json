@@ -12,7 +12,8 @@
     "config": "cp src/env/config.js src/env/config.local.js",
     "git": "git init && git add . && git commit -m 'init project'",
     "first": "yarn install && yarn run config && yarn run git",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js"
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "test:lint": "eslint --config ./.eslintrc.node.js --no-ignore helpers scripts config build/Server.js"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
