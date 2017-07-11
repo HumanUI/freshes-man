@@ -1,5 +1,6 @@
 const vueCliConfig = require('../config')
 const defaultConfig = require('../helpers/baseConfig')
+const path = require('path')
 
 class Server {
   constructor (baseConfig) {
@@ -9,13 +10,13 @@ class Server {
     }
   }
 
-  getAssetsPath (_path) {
-    var path = require('path')
-    const config = this.config
-    var assetsSubDirectory = process.env.NODE_ENV === 'production'
-      ? config.build.assetsSubDirectory
-      : config.dev.assetsSubDirectory
-    return path.posix.join(assetsSubDirectory, _path)
+  isProduction () {
+    return process.env.NODE_ENV === 'production'
+  }
+
+  getAssetsPath (relativePath) {
+    const assetsSubDirectory = this.config.assetsSubDirectory
+    return path.posix.join(assetsSubDirectory, relativePath)
   }
 
   getCssLoaders (options) {
