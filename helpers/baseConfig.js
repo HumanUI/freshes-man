@@ -10,6 +10,7 @@ module.exports = {
    * 项目根目录
    */
   rootPath: path.join(process.cwd()),
+  testPath: path.join(process.cwd(), 'test'),
   /**
    * 预先加载的 sass 资源
    * @type {string|Array}
