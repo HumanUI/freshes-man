@@ -4,14 +4,8 @@
   "description": "Freshes application with webpack",
   "author": "ChaselWu <chasel.wu@vitualreaty.com>",
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src",
-    "config": "cp src/env/config.js src/env/config.local.js",
-    "git": "git init && git add . && git commit -m 'init project'",
-    "first": "yarn install && yarn run config && yarn run git",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "test:dev": "node ./scripts/dev.js",
+    "test:prod": "node ./scripts/prod.js",
     "test:lint": "eslint --config ./.eslintrc.node.js --no-ignore helpers scripts config build/Server.js"
   },
   "files": [
