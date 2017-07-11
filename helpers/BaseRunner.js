@@ -1,4 +1,8 @@
 class BaseRunner {
+  constructor (config) {
+    this.baseConfig = config
+  }
+
   config () {
     throw new Error('You must override `config` method.')
   }
