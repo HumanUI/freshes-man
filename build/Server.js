@@ -10,10 +10,6 @@ class Server {
     }
   }
 
-  isProduction () {
-    return process.env.NODE_ENV === 'production'
-  }
-
   getAssetsPath (relativePath) {
     const assetsSubDirectory = this.config.assetsSubDirectory
     return path.posix.join(assetsSubDirectory, relativePath)
@@ -29,7 +25,7 @@ class Server {
     var cssLoader = {
       loader: 'css-loader',
       options: {
-        minimize: process.env.NODE_ENV === 'production',
+        minimize: config.cssMinimize,
         sourceMap: options.sourceMap
       }
     }
@@ -127,12 +123,11 @@ class Server {
   getVueLoader () {
     var utils = require('./utils')
     var config = this.config
-    var isProduction = process.env.NODE_ENV === 'production'
 
     return {
       loaders: this.getCssLoaders({
         sourceMap: config.cssSourceMap,
-        extract: isProduction
+        extract: config.cssExtract
       })
     }
   }
@@ -221,9 +216,6 @@ class Server {
       // cheap-module-eval-source-map is faster for development
       devtool: '#cheap-module-eval-source-map',
       plugins: [
-        new webpack.DefinePlugin({
-          'process.env': config.dev.env
-        }),
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
@@ -240,11 +232,6 @@ class Server {
 
   run () {
     var config = this.config
-
-    if (!process.env.NODE_ENV) {
-      process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-    }
-
     var opn = require('opn')
     var path = require('path')
     var express = require('express')
@@ -312,10 +299,6 @@ class Server {
     console.log('> Starting dev server...')
     devMiddleware.waitUntilValid(() => {
       console.log('> Listening at ' + uri + '\n')
-      // when env is testing, don't need open it
-      if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-        opn(uri)
-      }
       _resolve()
     })
 
