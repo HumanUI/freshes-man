@@ -131,9 +131,7 @@ class Server {
 
     return {
       loaders: this.getCssLoaders({
-        sourceMap: isProduction
-          ? config.build.productionSourceMap
-          : config.dev.cssSourceMap,
+        sourceMap: config.cssSourceMap,
         extract: isProduction
       })
     }
@@ -146,11 +144,9 @@ class Server {
         app: this.resolve('src/main.js')
       },
       output: {
-        path: config.build.assetsRoot,
+        path: config.assetsRoot,
         filename: '[name].js',
-        publicPath: process.env.NODE_ENV === 'production'
-          ? config.build.assetsPublicPath
-          : config.dev.assetsPublicPath
+        publicPath: config.assetsPublicPath
       },
       resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -220,7 +216,7 @@ class Server {
 
     return merge(baseWebpackConfig, {
       module: {
-        rules: this.getStyleLoaders({ sourceMap: config.dev.cssSourceMap })
+        rules: this.getStyleLoaders({ sourceMap: config.cssSourceMap })
       },
       // cheap-module-eval-source-map is faster for development
       devtool: '#cheap-module-eval-source-map',
@@ -257,12 +253,12 @@ class Server {
     var webpackConfig = this.getWebpackDev()
 
     // default port where dev server listens for incoming traffic
-    var port = process.env.PORT || config.dev.port
+    var port = process.env.PORT || config.port
     // automatically open browser, if not set will be false
-    var autoOpenBrowser = !!config.dev.autoOpenBrowser
+    var autoOpenBrowser = false
     // Define HTTP proxies to your custom API backend
     // https://github.com/chimurai/http-proxy-middleware
-    var proxyTable = config.dev.proxyTable
+    var proxyTable = config.proxyTable
 
     var app = express()
     var compiler = webpack(webpackConfig)
@@ -303,7 +299,7 @@ class Server {
     app.use(hotMiddleware)
 
     // serve pure static assets
-    var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+    var staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
     app.use(staticPath, express.static('./static'))
 
     var uri = 'http://localhost:' + port
