@@ -1,6 +1,12 @@
+const vueCliConfig = require('../config')
+const defaultConfig = require('../helpers/baseConfig')
+
 class Server {
-  constructor (config) {
-    this.config = config
+  constructor (baseConfig) {
+    this.config = Object.assign({}, vueCliConfig, defaultConfig, baseConfig)
+    if (this.config.debug) {
+      console.log(this.config)
+    }
   }
 
   getAssetsPath (_path) {
