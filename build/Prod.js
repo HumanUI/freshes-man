@@ -1,16 +1,19 @@
 const Base = require('./Base')
+const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const ora = require('ora')
+const rm = require('rimraf')
+const chalk = require('chalk')
 
 class Prod extends Base {
   getWebpackProd () {
-    var config = this.config
-    var path = require('path')
-    var webpack = require('webpack')
-    var merge = require('webpack-merge')
-    var baseWebpackConfig = require('./webpack.base.conf')
-    var CopyWebpackPlugin = require('copy-webpack-plugin')
-    var HtmlWebpackPlugin = require('html-webpack-plugin')
-    var ExtractTextPlugin = require('extract-text-webpack-plugin')
-    var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+    const config = this.config
+    const baseWebpackConfig = this.getWebpackBase()
 
     var webpackConfig = merge(baseWebpackConfig, {
       module: {
@@ -121,11 +124,6 @@ class Prod extends Base {
   }
 
   run () {
-    var ora = require('ora')
-    var rm = require('rimraf')
-    var path = require('path')
-    var chalk = require('chalk')
-    var webpack = require('webpack')
     var config = this.config
     var webpackConfig = this.getWebpackProd()
 
