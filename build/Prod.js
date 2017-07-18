@@ -75,7 +75,7 @@ class Prod extends Base {
               module.resource &&
               /\.js$/.test(module.resource) &&
               module.resource.indexOf(
-                path.join(__dirname, '../node_modules')
+                path.join(process.cwd(), 'node_modules')
               ) === 0
             )
           }
@@ -89,7 +89,7 @@ class Prod extends Base {
         // copy custom static assets
         new CopyWebpackPlugin([
           {
-            from: path.resolve(__dirname, '../static'),
+            from: path.join(process.cwd(), 'static'),
             to: config.assetsSubDirectory,
             ignore: ['.*']
           }
