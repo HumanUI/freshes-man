@@ -12,7 +12,8 @@ class Server extends Base {
 
     // add hot-reload related code to entry chunks
     Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-      baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
+      const file = path.join(__dirname, 'dev-client')
+      baseWebpackConfig.entry[name] = [file].concat(baseWebpackConfig.entry[name])
     })
 
     return merge(baseWebpackConfig, {
