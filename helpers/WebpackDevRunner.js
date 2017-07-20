@@ -1,5 +1,5 @@
 const BaseRunner = require('./BaseRunner')
-const Server = require('../build/Server.js')
+const Server = require('../webpack/Server.js')
 
 class WebpackDevRunner extends BaseRunner {
   run () {

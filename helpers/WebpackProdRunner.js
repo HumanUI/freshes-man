@@ -1,5 +1,5 @@
 const BaseRunner = require('./BaseRunner')
-const Prod = require('../build/Prod.js')
+const Prod = require('../webpack/Prod.js')
 
 class WebpackProdRunner extends BaseRunner {
   run () {
