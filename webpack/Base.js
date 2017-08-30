@@ -88,6 +88,11 @@ class Base {
             exclude: /vue-human(-\w+)?[\/\\]node_modules[\/\\].*/
           },
           {
+            test: /strawes[\/\\].*\.js$/,
+            loader: 'babel-loader',
+            exclude: /strawes[\/\\]node_modules[\/\\].*/
+          },
+          {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
             options: {
