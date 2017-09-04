@@ -83,14 +83,24 @@ class Base {
             include: [path.join(config.appPath), path.join(config.testPath)]
           },
           {
-            test: /vue-human(-\w+)?[\/\\].*\.js$/,
+            test: /vue-human[\/\\].*\.js$/,
             loader: 'babel-loader',
-            exclude: /vue-human(-\w+)?[\/\\]node_modules[\/\\].*/
+            exclude: /vue-human[\/\\](node_modules)[\/\\].*/
+          },
+          {
+            test: /vue-human-icons[\/\\].*\.js$/,
+            loader: 'babel-loader',
+            exclude: /vue-human-icons[\/\\](node_modules)[\/\\].*/
+          },
+          {
+            test: /vue-human-env[\/\\].*\.js$/,
+            loader: 'babel-loader',
+            exclude: /vue-human-env[\/\\](node_modules)[\/\\].*/
           },
           {
             test: /strawes[\/\\].*\.js$/,
             loader: 'babel-loader',
-            exclude: /strawes[\/\\]node_modules[\/\\].*/
+            exclude: /strawes[\/\\](node_modules)[\/\\].*/
           },
           {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
