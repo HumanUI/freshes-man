@@ -70,9 +70,9 @@
     "sinon-chai": "^2.12.0",
     "url-loader": "^0.5.8",
     "vue-human": "^2.6.11",
-    "vue-loader": "^13.0.2",
+    "vue-loader": "^13.0.4",
     "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.4.1",
+    "vue-template-compiler": "^2.4.2",
     "webpack": "^2.3.3",
     "webpack-bundle-analyzer": "^2.8.3",
     "webpack-dev-middleware": "^1.10.1",
@@ -81,10 +81,10 @@
   },
   "devDependencies": {
     "axios": "^0.16.1",
-    "vue": "^2.4.1",
+    "vue": "^2.4.2",
     "vue-human-env": "^2.0.2",
     "vue-router": "^2.7.0",
-    "vuex": "^2.3.1"
+    "vuex": "^2.4.0"
   },
   "engines": {
     "node": ">= 8.0.0",
