@@ -1,6 +1,6 @@
 {
   "name": "freshes-man",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Freshes application with webpack",
   "author": "ChaselWu <chasel.wu@vitualreaty.com>",
   "license": "MIT",
