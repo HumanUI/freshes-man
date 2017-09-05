@@ -3,6 +3,7 @@
   "version": "0.4.1",
   "description": "Freshes application with webpack",
   "author": "ChaselWu <chasel.wu@vitualreaty.com>",
+  "license": "MIT",
   "scripts": {
     "test:dev": "node ./scripts/dev.js",
     "test:prod": "node ./scripts/prod.js",
