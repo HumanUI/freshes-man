@@ -5,6 +5,7 @@
   "author": "ChaselWu <chasel.wu@vitualreaty.com>",
   "license": "MIT",
   "scripts": {
+    "start": "node ./scripts/dev.js",
     "test:dev": "node ./scripts/dev.js",
     "test:prod": "node ./scripts/prod.js",
     "test:lint": "eslint --config ./.eslintrc.node.js --no-ignore helpers scripts config build/Server.js"
