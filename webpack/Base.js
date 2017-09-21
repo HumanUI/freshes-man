@@ -1,5 +1,6 @@
 const defaultConfig = require('../helpers/baseConfig')
 const path = require('path')
+const webpack = require('webpack')
 
 class Base {
   constructor (baseConfig) {
@@ -119,7 +120,12 @@ class Base {
             }
           }
         ]
-      }
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.BROWSER_ENV': process.env.BROWSER_ENV || '"local"'
+        })
+      ]
     }
   }
 }
