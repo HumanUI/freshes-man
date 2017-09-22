@@ -50,6 +50,15 @@ class Base {
 
   getWebpackBase () {
     const config = this.config
+    const browserEnv = {}
+
+    // 合并默认设置的游览器环境变量和终端输入的环境变量
+    Object.keys(this.config.browserEnv).forEach(name => {
+      browserEnv[`process.env.${name}`] = process.env.hasOwnProperty(name)
+        ? process.env[name]
+        : this.config.browserEnv[name]
+    })
+
     return {
       entry: {
         app: path.join(config.appPath, 'main.js')
@@ -123,7 +132,9 @@ class Base {
       },
       plugins: [
         new webpack.DefinePlugin({
-          'process.BROWSER_ENV': process.env.BROWSER_ENV || '"local"'
+          // process.BROWSER_ENV 即将移除，请勿使用
+          'process.BROWSER_ENV': process.env.BROWSER_ENV || '"local"',
+          ...browserEnv
         })
       ]
     }
