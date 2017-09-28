@@ -59,6 +59,13 @@ class Base {
         : this.config.browserEnv[name]
     })
 
+    const webpackEnv = Object.assign(
+      {},
+      // process.BROWSER_ENV 即将移除，请勿使用
+      { 'process.BROWSER_ENV': process.env.BROWSER_ENV || '"local"' },
+      browserEnv
+    )
+
     return {
       entry: {
         app: path.join(config.appPath, 'main.js')
@@ -131,11 +138,7 @@ class Base {
         ]
       },
       plugins: [
-        new webpack.DefinePlugin({
-          // process.BROWSER_ENV 即将移除，请勿使用
-          'process.BROWSER_ENV': process.env.BROWSER_ENV || '"local"',
-          ...browserEnv
-        })
+        new webpack.DefinePlugin(webpackEnv)
       ]
     }
   }
