@@ -95,5 +95,11 @@ module.exports = {
    * 是否提交统计报表
    * @type {Boolean}
    */
-  bundleAnalyzerReport: process.env.npm_config_report
+  bundleAnalyzerReport: process.env.npm_config_report,
+
+  /**
+   * 用于 Javascript 的环境变量
+   * @type {Object}
+   */
+  browserEnv: {}
 }
